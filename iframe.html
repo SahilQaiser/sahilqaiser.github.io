@@ -70,10 +70,10 @@
       let activityDetected = false;
       const activityEvents = ['click', 'keypress', 'scroll', 'wheel', 'mousewheel', 'mousemove'];
 
-      if (window.self === window.top) {
-         // The page is not in an iframe
-         window.location.href = "/error";
-      }
+      // if (window.self === window.top) {
+      //    // The page is not in an iframe
+      //    window.location.href = "/error";
+      // }
 
       function sendActivityMessage() {
           if (activityDetected) {
