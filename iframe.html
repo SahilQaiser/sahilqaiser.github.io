@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bootstrap Table Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="mb-4">Demo Data Table</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">City</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>John Doe</td>
+      <td>28</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jane Smith</td>
+      <td>34</td>
+      <td>Los Angeles</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Sam Johnson</td>
+      <td>45</td>
+      <td>Chicago</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Lisa Brown</td>
+      <td>29</td>
+      <td>Houston</td>
+    </tr>
+    </tbody>
+  </table>
+  <div id="content-container" tabindex="-1" role="main">
+    <div class="container-fluid">
+      <div id="page-title">
+        <h1 class="page-header text-overflow">DHH POC Report</h1>
+      </div>
+      <div id="page-content">
+        <div class="iframe-container" id="dhh_report">
+
+          <!-- <iframe style="width: 100%; height: 100%; border: none;" src="https://plt1-dev-np1-webapp.irp-dev.com/report?report_id=78c6df5276355192e48440a0acd447b677d595de2d56b970c4bc547536ef571e&auth_token=eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiSGFyc2hpdCIsInN1YiI6IjA2MWNkNTZmM2RkYzQ1ZDY4NTQ2NDUzM2VlYmVmZjE1Yzc5ODJiNTRkMjlmYTQ0ZjY4ZWU0NjcxYThiZTVlMWYiLCJpYXQiOjE3NDA1NTQwNjIsImV4cCI6MTc0MDY0MDQ2Mn0.HqKkp4Ro_FuEqyJ55Xn-eGeFQkOryl3DzAuqbkQvijg&urlname=test_registry1&tenant_id=9da23b345c7dfa3d42167c4cb10a88077a1b6250b76b1bbe913fd09dd5483e5d&ent=1&reg=1&rdcdomain=http://localhost:8081"
+                  frameborder="0" allowfullscreen></iframe> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script type="text/javascript">
+      const dhhReportIFrameActivityEventName = 'DHH-Iframe-Activity';
+      const intervalTime = 1000;
+      let activityDetected = false;
+      const activityEvents = ['click', 'keypress', 'scroll', 'wheel', 'mousewheel', 'mousemove'];
+
+      if (window.self === window.top) {
+         // The page is not in an iframe
+         window.location.href = "/error";
+      }
+
+      function sendActivityMessage() {
+          if (activityDetected) {
+              console.log("[IRP-DHH-REPORT-POC] Iframe activity detected");
+              window.parent.postMessage(dhhReportIFrameActivityEventName, '*');
+              activityDetected = false;
+          }
+      }
+
+      console.log("[IRP-DHH-REPORT-POC] inside IFrame");
+      // Set an interval to check for activity every 1 seconds
+      setInterval(sendActivityMessage, intervalTime);
+
+      // Event listeners to detect activity
+      activityEvents.forEach(event => {
+        window.addEventListener(event, () => {
+          activityDetected = true;
+        });
+      });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
