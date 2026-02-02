@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Manager | Qaiser Hassan Projects</title>
+    <link rel="stylesheet" href="../../res/style.css">
+</head>
+
+<body>
+    <header>
+        <h2><span id="name">Expense Manager</span></h2>
+        <a class="nav" href="../">|projects|</a>
+    </header>
+
+    <section id="project-details">
+        <a class="nav" href="../">|up|</a>
+        <aside>
+            <ul class="about">
+                <li class="about-item"><a href="#">Android Application</a></li>
+                <li class="about-item"><a href="#">Expense Tracking</a></li>
+                <li class="about-item"><a href="#">Budget Planning</a></li>
+                <li class="about-item"><a href="#">PDF Reports</a></li>
+                <li class="about-item"><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </aside>
+        <p
+            style="color: white; max-width: 600px; text-align: center; font-family: 'Pangolin', cursive; opacity: 0.8; margin-top: 20px;">
+            A comprehensive spending tracker designed to simplify financial management. Features include real-time
+            expense logging, budget limits, and automated PDF report generation.
+        </p>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        // Header title hover effect consistency
+        $('h2 span').hover(function () {
+            $(this).css('opacity', '1');
+        }, function () {
+            $(this).css('opacity', '0.5');
+        });
+    </script>
+</body>
+
+</html>
